@@ -9,7 +9,7 @@ import session from 'express-session';
 import passport from 'passport';
 
 import jwt from 'jsonwebtoken';
-import './passport-setup'; // import the passport.js configuration
+// import '../passport-setup'; // import the passport.js configuration
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -55,7 +55,7 @@ passport.use(
       // configure your Google credentials here
       clientID: '527460591477-lj2am1m4ohslct24h6hmdoaio7et87np.apps.googleusercontent.com',
       clientSecret: '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',
-      callbackURL: '/auth/google/callback',
+      callbackURL: 'http://localhost:3000/google/callback',
     },
     async (accessToken, refreshToken, profile, done) => {
         done(null, { id: Number(profile.id), name: profile.displayName });
@@ -69,7 +69,7 @@ passport.use(
       // configure your Facebook credentials here
       clientID: '1249929752269721',
       clientSecret: '395af74c86bf9b6a4ba989b6c2220885',
-      callbackURL: '/auth/facebook/callback',
+      callbackURL: 'http://localhost:3000/facebook/callback',
       profileFields: ['id', 'displayName', 'email'],
     },
     async (accessToken, refreshToken, profile:any, done) => {
@@ -98,7 +98,7 @@ app.get('/google/callback',
   passport.authenticate('google', { failureRedirect: process.env.JWT_SECRET ? process.env.JWT_SECRET: "" }),
   (req, res) => {
     const token = jwt.sign({ id: req.user?.id }, "sssdddd");
-    res.redirect(`http://localhost:4200/login/success?token=${token}`);
+    res.redirect(`http://localhost:3000/login/success?token=${token}`);
   }
 );
 
@@ -109,7 +109,7 @@ app.get('/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: process.env.JWT_SECRET ? process.env.JWT_SECRET: "" }),
   (req, res) => {
     const token = jwt.sign({ id: req.user?.id }, "sssdddd");
-    res.redirect(`http://localhost:4200/login/success?token=${token}`);
+    res.redirect(`http://localhost:3000/login/success?token=${token}`);
   }
 );
 
@@ -130,6 +130,11 @@ app.get('/logout', (req, res, next) => {
 app.get('/', (_req: Request, res: Response) => {
     res.send('Hello World!');
 });
+
+app.get('/login/success', (_req: Request, res: Response) => {
+    res.send('You are login success with : '+_req.query.token);
+});
+
 app.get('/dist1', getDist1);
 app.post('/game24', Game24);
 

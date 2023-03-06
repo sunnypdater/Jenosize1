@@ -3,7 +3,7 @@ import {Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import {Strategy as FacebookStrategy} from 'passport-facebook';
 import {Strategy as LocalStrategy} from 'passport-local';
 import bcrypt from 'bcrypt';
-import User from './models/user'; // this is your user model
+import User from './src/models/user'; // this is your user model
 
 interface User {
     id: number | undefined;
