@@ -15,6 +15,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+app.use(session({ secret: process.env.JWT_SECRET ? process.env.JWT_SECRET: "" }));
 const PORT = process.env.PORT || 3000;
 // const controller = new PlacesController("AIzaSyC9kSQZw-WnCbS3gDBIXhRYfhP5XxTzhHM"); // replace with your actual API key
 const controller = new PlacesController("AIzaSyCtZQDPtPsavyOJoQdVT-o__n1ei9towiQ"); // replace with your actual API key
