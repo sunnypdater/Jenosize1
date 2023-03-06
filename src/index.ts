@@ -16,7 +16,8 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const controller = new PlacesController("AIzaSyC9kSQZw-WnCbS3gDBIXhRYfhP5XxTzhHM"); // replace with your actual API key
+// const controller = new PlacesController("AIzaSyC9kSQZw-WnCbS3gDBIXhRYfhP5XxTzhHM"); // replace with your actual API key
+const controller = new PlacesController("AIzaSyCtZQDPtPsavyOJoQdVT-o__n1ei9towiQ"); // replace with your actual API key
 
 // configure the session middleware
 app.use(
@@ -32,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.json());
-app.use(validateAuthToken);
+// app.use(validateAuthToken);
 
 
 interface User {
