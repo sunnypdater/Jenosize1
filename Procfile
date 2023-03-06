@@ -1,5 +1,1 @@
-{
-    "scripts": {
-        "start": "npm run serve"
-    }
-}
+web: npm run serve
