@@ -24,13 +24,12 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use((0, express_session_1.default)({ secret: process.env.JWT_SECRET ? process.env.JWT_SECRET : "" }));
 const PORT = process.env.PORT || 3000;
 // const controller = new PlacesController("AIzaSyC9kSQZw-WnCbS3gDBIXhRYfhP5XxTzhHM"); // replace with your actual API key
 const controller = new jenosize_controller_1.PlacesController("AIzaSyCtZQDPtPsavyOJoQdVT-o__n1ei9towiQ"); // replace with your actual API key
 // configure the session middleware
 app.use((0, express_session_1.default)({
-    secret: process.env.JWT_SECRET ? process.env.JWT_SECRET : "",
+    secret: "jenosizter",
     resave: false,
     saveUninitialized: false,
 }));
