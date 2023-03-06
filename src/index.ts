@@ -35,7 +35,6 @@ app.use(passport.session());
 app.use(express.json());
 // app.use(validateAuthToken);
 
-
 interface User {
     id: number | undefined;
 }
